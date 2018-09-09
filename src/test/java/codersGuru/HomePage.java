@@ -4,8 +4,6 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 //zaciągamy wszystko z BasePage
@@ -55,8 +53,7 @@ public class HomePage extends BasePage {
                 createAnAccountLink,
                 regulationsLink,
                 howItWorksLink,
-                facebookLink,
-                coderslabLink};
+                facebookLink};
         for (WebElement item : linkList) {
             item.click();
             driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -66,4 +63,29 @@ public class HomePage extends BasePage {
             Assert.assertFalse(Tittle.contains("Error"));
         }
     }
-}
+        //zamykanie strony coderslab
+        public void clicCodersLabLink(){
+            //złap uchwyt do aktualnego okna
+            String parentHandle = driver.getWindowHandle();
+            //kliknij na coderslablink i otwórz nowe okno
+            coderslabLink.click();
+
+            try {
+                Thread.sleep(5000);
+            }
+            catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            //przeswitchuj się do otwartego okna
+        for (String winHandle: driver.getWindowHandles()){
+            driver.switchTo().window(winHandle);
+        }
+        //sprawdź asercje
+        Assert.assertTrue(driver.getTitle().contains("Coders"));
+        //Zamknij okno
+        driver.close();
+        //wróc do poprzedniego okna
+        driver.switchTo().window(parentHandle);
+        }
+    }
+
