@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import java.util.concurrent.TimeUnit;
 
 //zaciągamy wszystko z BasePage
-public class HomePage extends BasePage {
+public class HomePageObject extends BasePage {
 
     //lokatory
     @FindBy(name="email")
@@ -33,7 +33,7 @@ public class HomePage extends BasePage {
     @FindBy (xpath = "/html/body/footer/div/legal/a")
     private WebElement coderslabLink;
 
-    public HomePage(WebDriver driver) {
+    public HomePageObject(WebDriver driver) {
         super(driver);
     }
 
@@ -87,5 +87,11 @@ public class HomePage extends BasePage {
         //wróc do poprzedniego okna
         driver.switchTo().window(parentHandle);
         }
+
+        public void goToRegistrationPage() {
+            createAnAccountLink.click();
+
+        }
     }
+
 
