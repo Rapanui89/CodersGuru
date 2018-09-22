@@ -1,5 +1,6 @@
 package codersGuru;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -33,6 +34,12 @@ public class RegistrationPageObject extends BasePage {
     private WebElement regulationsCheckboxLokator;
     @FindBy(id = "register-submit-btn")
     private WebElement registerSubmitLocator;
+    @FindBy (id = "company")
+    private WebElement companyRegistrationTypeLocator;
+    @FindBy (id = "fos_user_registration_form_company_name")
+    private WebElement companyNameLocator;
+    @FindBy (id = "fos_user_registration_form_nip")
+    private WebElement companyRegistratioTaxLocator;
 
     public RegistrationPageObject(WebDriver driver) {
         super(driver);
@@ -44,6 +51,9 @@ public class RegistrationPageObject extends BasePage {
 
     public void clickRegistrationType() {
         registrationTypeLocator.click();
+    }
+    public void companyRegistrationType (){
+        companyRegistrationTypeLocator.click();
     }
 
     public void writeRegistartionEmail(String email){
@@ -96,11 +106,30 @@ public class RegistrationPageObject extends BasePage {
         this.numberLocator.sendKeys(numberAddress);
     }
 
+    public void companyName (String companyName){
+        this.companyNameLocator.clear();
+        this.companyNameLocator.sendKeys(companyName);
+    }
+
+    public void companyTaxNumber (String taxNumber){
+        this.companyRegistratioTaxLocator.clear();
+        this.companyRegistratioTaxLocator.sendKeys(taxNumber);
+    }
+
+
     public void clickRegulationsCheckbox(){
         regulationsCheckboxLokator.click();
     }
 
     public void clickRegisterSubmit(){
         registerSubmitLocator.click();
+    }
+
+    public String readUser(){
+        WebElement readUserElement = driver.findElement(By.id("user-name"));
+        String result = readUserElement.getText();
+        return result;
+
+
     }
 }

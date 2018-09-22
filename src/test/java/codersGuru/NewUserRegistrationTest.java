@@ -7,11 +7,17 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.junit.Assert;
 import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.FindBy;
 
 import java.util.concurrent.TimeUnit;
 
 
 public class NewUserRegistrationTest extends BaseTest {
+
 
     @Given("^I open coders guru website$")
     public void iOpenCodersGuruWebsite(){
@@ -35,7 +41,7 @@ public class NewUserRegistrationTest extends BaseTest {
     @And("^I enter email test@test.pl$")
     public void iEnterEmailTestTestPl(){
         RegistrationPageObject enterEmail = new RegistrationPageObject(driver);
-        enterEmail.writeRegistartionEmail("test4@test.pl");
+        enterEmail.writeRegistartionEmail("test9@test.pl");
     }
 
     @And("^I enter name \"([^\"]*)\" surname \"([^\"]*)\"$")
@@ -77,7 +83,32 @@ public class NewUserRegistrationTest extends BaseTest {
 
     @Then("^User should be successfully created$")
     public void userShouldBeSuccessfullyCreated(){
-        String Title = driver.getTitle();
-        Assert.assertTrue(Title.contains("Coders"));
+        RegistrationPageObject registrationPage = new RegistrationPageObject(driver);
+        String result = registrationPage.readUser();
+        Assert.assertEquals("Jan", result);
     }
+
+    @And("^I select company user$")
+    public void iSelectCompanyUser(){
+        RegistrationPageObject registrationPageObject = new RegistrationPageObject(driver);
+        registrationPageObject.companyRegistrationType();
+    }
+
+    @And("^I provide company name \"([^\"]*)\"$")
+    public void iProvideCompanyName(String arg0){
+        RegistrationPageObject registrationPageObject = new RegistrationPageObject(driver);
+        registrationPageObject.companyName(arg0);
+    }
+
+    @And("^I provide company tax number$")
+    public void iProvideCompanyTaxNumber(){
+        WebDriver helpDriver = new FirefoxDriver();
+        helpDriver.get("http://generatory.it/");
+        String nip = helpDriver.findElement(By.id("nipBox")).getText();
+        helpDriver.close();
+
+        RegistrationPageObject registrationPageObject = new RegistrationPageObject(driver);
+        registrationPageObject.companyTaxNumber(nip);
+    }
+
 }
