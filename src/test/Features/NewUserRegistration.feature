@@ -11,3 +11,7 @@ Feature: registering the correct private user
     And I check that I have read button
     And I click registration button
     Then User should be successfully created
+
+
+
+

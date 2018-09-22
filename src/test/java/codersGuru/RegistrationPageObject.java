@@ -1,11 +1,16 @@
 package codersGuru;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class RegistrationPageObject extends BasePage {
     //lokatory
+    @FindBy(xpath = "/html/body/section[3]/div/form/input[2]")
+    private WebElement goToRegistrationPageLocator;
+    @FindBy(id = "person")
+    private WebElement registrationTypeLocator;
     @FindBy(id = "fos_user_registration_form_email")
     private WebElement registrationEmailLocator;
     @FindBy(id = "fos_user_registration_form_name")
@@ -24,10 +29,78 @@ public class RegistrationPageObject extends BasePage {
     private WebElement streetLocator;
     @FindBy(id = "form_number")
     private WebElement numberLocator;
-    //@FindBy(className = "registration__checkbox-container login-checkbox has-error")
-    //private WebElement
+    @FindBy(xpath = "/html/body/div/div/div/form/div[12]/input")
+    private WebElement regulationsCheckboxLokator;
+    @FindBy(id = "register-submit-btn")
+    private WebElement registerSubmitLocator;
 
     public RegistrationPageObject(WebDriver driver) {
         super(driver);
+    }
+
+    public void goToRegistrationPage() {
+        goToRegistrationPageLocator.click();
+    }
+
+    public void clickRegistrationType() {
+        registrationTypeLocator.click();
+    }
+
+    public void writeRegistartionEmail(String email){
+        this.registrationEmailLocator.clear();
+        this.registrationEmailLocator.sendKeys(email);
+    }
+
+    public void writeRegistrationFirstName (String firsName){
+        this.nameLocator.clear();
+        this.nameLocator.sendKeys(firsName);
+    }
+
+    public void writeRegistrationLastName (String lastName){
+        this.surnameLocator.clear();
+        this.surnameLocator.sendKeys(lastName);
+    }
+
+    public void writeFirstPassword (String firstPassword){
+        this.firstpasswordLocator.clear();
+        this.firstpasswordLocator.sendKeys(firstPassword);
+    }
+
+    public void writeSecondPassword (String secondPassword) {
+        this.secondpasswordLocator.clear();
+        this.secondpasswordLocator.sendKeys(secondPassword);
+    }
+
+    public void writeCity (String city){
+        this.cityLocator.clear();
+        this.cityLocator.sendKeys(city);
+    }
+
+    public void writePostCode (String postCode){
+        this.postCodeLocator.clear();
+        this.postCodeLocator.sendKeys(postCode);
+    }
+
+    public void writeStreet (String street){
+        this.streetLocator.clear();
+        this.streetLocator.sendKeys(street);
+    }
+
+    public void writeStreetAddress (String streetAddress){
+        this.streetLocator.clear();
+        this.streetLocator.sendKeys(streetAddress);
+    }
+
+    public void writeNumberAddress (String numberAddress){
+        this.numberLocator.clear();
+        this.numberLocator.sendKeys(numberAddress);
+    }
+
+    public void clickRegulationsCheckbox(){
+        regulationsCheckboxLokator.click();
+    }
+
+    public void clickRegisterSubmit(){
+        registerSubmitLocator.click();
     }
 }
