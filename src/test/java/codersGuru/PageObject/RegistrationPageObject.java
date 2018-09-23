@@ -1,6 +1,6 @@
-package codersGuru;
+package codersGuru.PageObject;
 
-import org.junit.Assert;
+import codersGuru.PageObject.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

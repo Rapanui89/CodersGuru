@@ -1,4 +1,4 @@
-package codersGuru;
+package codersGuru.Test;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -9,7 +9,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
-    static WebDriver driver;
+    protected static WebDriver driver;
+
 
     //Before class odwołuje się do tylko tej klasy. Inicjalizuje naszego drivera
     @BeforeClass
@@ -24,8 +25,8 @@ public class BaseTest {
         driver.manage().deleteAllCookies();
     }
     //zamyka przeglądarke
-    /*@AfterClass
+    @AfterClass
     public static void tearDown() {
         driver.close();
-    }*/
+    }
 }
