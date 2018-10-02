@@ -8,8 +8,8 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.util.concurrent.TimeUnit;
 
-public class BasePage {
-    protected WebDriver driver;
+public class BasePage  {
+    protected static WebDriver driver;
     //konstruktor. Musi mieć nazwę tak jak główna klasa.
     public BasePage (WebDriver  driver) {
         this.driver = driver;
