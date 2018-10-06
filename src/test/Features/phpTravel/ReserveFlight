@@ -3,6 +3,6 @@ Feature: Reserve flight
   Scenario: Reserver flight from Warsaw to New York
     Given I'm on phptravels website
     And I reserve two way flights from "WAW" to "ROC" on date "2019-01-24" and "2019-01-31"
-    And I pick first available flight
-    And I book as a guest wight "Jan" "Kowalski" "test@test.pl" "+48666666666" "Wrocław"
+    And I pick available flight 1
+    And I book as a guest wight "Jan" "Kowalski" "test@test.pl" "+48666666666" "Wrocław" "Poland"
     Then I should see prepared invoice

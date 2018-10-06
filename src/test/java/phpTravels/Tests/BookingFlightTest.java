@@ -6,6 +6,7 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import phpTravels.PageObject.FlightDetailsPageObject;
+import phpTravels.PageObject.FormDetailsPageObject;
 
 import java.util.concurrent.TimeUnit;
 
@@ -22,19 +23,23 @@ public class BookingFlightTest extends FirefoxTest {
     @And("^I reserve two way flights from \"([^\"]*)\" to \"([^\"]*)\" on date \"([^\"]*)\" and \"([^\"]*)\"$")
     public void iReserveTwoWayFlightsFromToOnDateAnd(String arg0, String arg1, String arg2, String arg3) {
         FlightDetailsPageObject flightDetailsPageObject = new FlightDetailsPageObject(driver);
-        flightDetailsPageObject.selectDepartureFrom("WAW");
+        flightDetailsPageObject.selectDepartureFrom(arg0);
+        flightDetailsPageObject.selectDepartureTo(arg1);
+        flightDetailsPageObject.selectCheckboxTypeOfFlight();
+        flightDetailsPageObject.selectFromDate(arg2);
+        flightDetailsPageObject.selectToDate(arg3);
     }
 
-    @And("^I pick first available flight$")
-    public void iPickFirstAvailableFlight() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+    @And("^I pick available flight (\\d+)$")
+    public void iPickAvailableFlight(int arg0){
+        FlightDetailsPageObject flightDetailsPageObject = new FlightDetailsPageObject(driver);
+        flightDetailsPageObject.selectFlights(arg0);
     }
 
-    @And("^I book as a guest wight \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\"$")
-    public void iBookAsAGuestWight(String arg0, String arg1, String arg2, String arg3, String arg4) throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+    @And("^I book as a guest wight \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\"$")
+    public void iBookAsAGuestWight(String arg0, String arg1, String arg2, String arg3, String arg4, String arg5) {
+        FormDetailsPageObject formDetailsPageObject = new FormDetailsPageObject(driver);
+        formDetailsPageObject.completeTheForm(arg0,arg1,arg2,arg3,arg4,arg5);
     }
 
     @Then("^I should see prepared invoice$")
@@ -42,4 +47,6 @@ public class BookingFlightTest extends FirefoxTest {
         // Write code here that turns the phrase above into concrete actions
         throw new PendingException();
     }
+
+
 }
