@@ -7,6 +7,7 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import phpTravels.PageObject.FlightDetailsPageObject;
 import phpTravels.PageObject.FormDetailsPageObject;
+import phpTravels.PageObject.InvoicePageObject;
 
 import java.util.concurrent.TimeUnit;
 
@@ -43,9 +44,9 @@ public class BookingFlightTest extends FirefoxTest {
     }
 
     @Then("^I should see prepared invoice$")
-    public void iShouldSeePreparedInvoice() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+    public void iShouldSeePreparedInvoice(){
+        InvoicePageObject invoicePageObject = new InvoicePageObject(driver);
+        invoicePageObject.takeScreenshot();
     }
 
 

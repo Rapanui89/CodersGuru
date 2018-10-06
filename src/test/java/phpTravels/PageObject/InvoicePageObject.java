@@ -15,9 +15,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class InvoicePageObject extends BasePage {
-    @FindBy (id = "124")
+    @FindBy (id = "125")
     private WebElement payOnArrivalButtonLocator;
-
 
     public InvoicePageObject (WebDriver driver) {
         super(driver); }
